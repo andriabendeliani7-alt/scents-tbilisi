@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scents Tbilisi — Fragrance Collection</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F4EE;
+    --warm-white: #FDFBF7;
+    --black: #111010;
+    --charcoal: #2A2826;
+    --muted: #7A756E;
+    --gold: #C9A96E;
+    --gold-light: #E8D8B8;
+    --border: rgba(17,16,16,0.10);
+    --border-strong: rgba(17,16,16,0.22);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── Hero ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 100%, rgba(201,169,110,0.13) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 20%, rgba(201,169,110,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 15%, rgba(201,169,110,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Decorative lines */
+  .hero::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--gold));
+  }
+
+  .corner-deco {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    opacity: 0.35;
+  }
+  .corner-deco.tl { top: 32px; left: 32px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+  .corner-deco.tr { top: 32px; right: 32px; border-top: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+  .corner-deco.bl { bottom: 100px; left: 32px; border-bottom: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+  .corner-deco.br { bottom: 100px; right: 32px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+
+  .logo-wrap {
+    margin-bottom: 40px;
+    animation: fadeUp 1s ease both;
+  }
+
+  .logo-bottle {
+    width: 90px;
+    height: auto;
+    opacity: 0.92;
+    filter: drop-shadow(0 4px 20px rgba(201,169,110,0.25));
+  }
+
+  .hero-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    animation: fadeUp 1s ease 0.1s both;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(52px, 8vw, 96px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    color: var(--black);
+    margin-bottom: 8px;
+    animation: fadeUp 1s ease 0.2s both;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 20px;
+    animation: fadeUp 1s ease 0.3s both;
+  }
+
+  .hero-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 32px auto 0;
+    animation: fadeUp 1s ease 0.4s both;
+  }
+
+  /* ─── Main ─── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 24px 120px;
+  }
+
+  /* ─── Search ─── */
+  .search-wrap {
+    position: relative;
+    max-width: 440px;
+    margin: 0 auto 64px;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    background: var(--warm-white);
+    border: 1px solid var(--border-strong);
+    border-radius: 0;
+    padding: 14px 48px 14px 20px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-wrap input::placeholder { color: var(--muted); }
+  .search-wrap input:focus { border-color: var(--gold); }
+
+  .search-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--muted);
+    pointer-events: none;
+  }
+
+  /* ─── Brand section ─── */
+  .brands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .brand-card {
+    background: var(--warm-white);
+    padding: 32px 36px;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .brand-card:hover { background: #FBF8F2; }
+
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    color: var(--black);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand-name::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .fragrance-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .fragrance-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(17,16,16,0.05);
+    cursor: default;
+    transition: all 0.15s;
+  }
+
+  .fragrance-item:last-child { border-bottom: none; }
+
+  .fragrance-item:hover .fragrance-name { color: var(--gold); }
+
+  .fragrance-num {
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--gold-light);
+    min-width: 20px;
+    padding-top: 2px;
+    font-variant-numeric: tabular-nums;
+    border: 1px solid var(--gold-light);
+    text-align: center;
+    padding: 1px 4px;
+  }
+
+  .fragrance-name {
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.07em;
+    color: var(--charcoal);
+    text-transform: uppercase;
+    line-height: 1.5;
+    transition: color 0.15s;
+  }
+
+  .fragrance-type {
+    margin-left: auto;
+    font-size: 9px;
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    text-align: center;
+    padding: 48px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  /* ─── Empty state ─── */
+  .no-results {
+    display: none;
+    text-align: center;
+    padding: 80px 0;
+    grid-column: 1 / -1;
+    background: var(--warm-white);
+  }
+
+  .no-results p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--muted);
+  }
+
+  /* ─── Count badge ─── */
+  .collection-meta {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .collection-meta p {
+    font-size: 10px;
+    font-weight: 200;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .collection-meta strong {
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .corner-deco { width: 50px; height: 50px; }
+    .brands-grid { grid-template-columns: 1fr; }
+    .brand-card { padding: 24px 20px; }
+    .hero { min-height: 80vh; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="corner-deco tl"></div>
+  <div class="corner-deco tr"></div>
+  <div class="corner-deco bl"></div>
+  <div class="corner-deco br"></div>
+
+  <div class="logo-wrap">
+    <svg class="logo-bottle" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Bottle cap -->
+      <rect x="46" y="4" width="28" height="14" rx="3" fill="#2A2826"/>
+      <!-- Neck -->
+      <rect x="50" y="18" width="20" height="12" rx="1" fill="#2A2826"/>
+      <!-- Bottle body -->
+      <rect x="18" y="30" width="84" height="118" rx="10" fill="#2A2826"/>
+      <!-- Label area -->
+      <rect x="28" y="52" width="64" height="76" rx="4" fill="#F7F4EE" opacity="0.12"/>
+      <!-- ST monogram -->
+      <text x="60" y="98" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="400" fill="#F7F4EE" letter-spacing="1">ST</text>
+      <!-- Gold shine line -->
+      <rect x="22" y="40" width="3" height="100" rx="1" fill="#C9A96E" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <p class="hero-eyebrow">Curated Fragrance House</p>
+  <h1 class="hero-title">Scents<br><em>Tbilisi</em></h1>
+  <p class="hero-subtitle">Collection 2025</p>
+  <div class="hero-rule"></div>
+</section>
+
+<!-- Main content -->
+<main>
+  <div class="search-wrap">
+    <input type="text" id="search" placeholder="Search fragrances or brands…" autocomplete="off">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>
+    </svg>
+  </div>
+
+  <div class="collection-meta">
+    <p><strong id="count">57</strong> fragrances across <strong id="brand-count">27</strong> houses</p>
+  </div>
+
+  <div class="brands-grid" id="grid"></div>
+</main>
+
+<footer>
+  <p class="footer-logo"><span>Scents</span> Tbilisi</p>
+</footer>
+
+<script>
+const data = [
+  { brand: "Azzaro", items: [
+    "The Most Wanted EDP Intense", "The Most Wanted EDT Intense", "Wanted EDT"
+  ]},
+  { brand: "Burberry", items: ["Blush"] },
+  { brand: "Carolina Herrera", items: ["212 Sexy Men EDT", "Good Girl EDP"] },
+  { brand: "Chanel", items: ["No. 5 EDP", "Bleu de Chanel Parfum", "Gabrielle EDP"] },
+  { brand: "Clive Christian", items: ["VIII Rococo"] },
+  { brand: "Dior", items: ["J'adore Eau de Parfum"] },
+  { brand: "Dolce & Gabbana", items: ["King EDT", "The One EDT"] },
+  { brand: "Escentric Molecules", items: ["Escentric 01"] },
+  { brand: "Essential Parfums", items: ["Bois Imperial"] },
+  { brand: "Goldfield & Banks", items: ["Bohemian Lime"] },
+  { brand: "Jean Paul Gaultier", items: [
+    "Classique Collector Edition", "Le Beau Le Parfum", "Le Male",
+    "Le Male Elixir", "Le Male Le Parfum", "Paradise Garden", "Scandal EDT"
+  ]},
+  { brand: "Jimmy Choo", items: ["I Want Choo Forever", "Man Aqua"] },
+  { brand: "Jo Malone", items: ["Myrrh & Tonka"] },
+  { brand: "Just Cavalli", items: ["Just EDT"] },
+  { brand: "Lancôme", items: ["La Vie Est Belle"] },
+  { brand: "Maison Francis Kurkdjian", items: ["Baccarat Rouge 540", "Féminin Pluriel EDP"] },
+  { brand: "Mugler", items: ["A*Men Ultimate"] },
+  { brand: "Nishane", items: ["Ani X"] },
+  { brand: "Nissaba", items: ["Sulawesi"] },
+  { brand: "Psychotic London", items: ["Frozen Liquid"] },
+  { brand: "Salvatore Ferragamo", items: ["Terra Rossa"] },
+  { brand: "Stronger With You (Armani)", items: ["Absolutely", "Intensely", "Only", "Powerfully"] },
+  { brand: "Tom Ford", items: ["Lost Cherry", "Noir Extreme", "Tobacco Vanille"] },
+  { brand: "Valentino", items: ["Voce Viva"] },
+  { brand: "Versace", items: ["Bright Crystal"] },
+  { brand: "Xerjoff", items: ["Coffee Break", "Shooting Stars Cruz Del Sur II"] },
+  { brand: "Yves Saint Laurent", items: ["Black Opium EDP"] },
+];
+
+const grid = document.getElementById('grid');
+const searchInput = document.getElementById('search');
+const countEl = document.getElementById('count');
+const brandCountEl = document.getElementById('brand-count');
+
+function extractType(name) {
+  const types = ['EDP Intense', 'EDT Intense', 'EDP', 'EDT', 'Parfum', 'Le Parfum', 'Elixir'];
+  for (const t of types) {
+    if (name.toLowerCase().includes(t.toLowerCase())) return t;
+  }
+  return '';
+}
+
+function cleanName(name) {
+  return name;
+}
+
+function render(query) {
+  const q = query.toLowerCase().trim();
+  grid.innerHTML = '';
+  let totalFragrances = 0;
+  let totalBrands = 0;
+
+  let hasResults = false;
+
+  data.forEach(({ brand, items }) => {
+    const matchedBrand = brand.toLowerCase().includes(q);
+    const matchedItems = items.filter(i => i.toLowerCase().includes(q) || matchedBrand);
+
+    if (matchedItems.length === 0) return;
+    hasResults = true;
+    totalFragrances += matchedItems.length;
+    totalBrands++;
+
+    const card = document.createElement('div');
+    card.className = 'brand-card';
+
+    const brandEl = document.createElement('div');
+    brandEl.className = 'brand-name';
+    brandEl.textContent = brand;
+    card.appendChild(brandEl);
+
+    const list = document.createElement('ul');
+    list.className = 'fragrance-list';
+
+    matchedItems.forEach((item, idx) => {
+      const li = document.createElement('li');
+      li.className = 'fragrance-item';
+
+      const num = document.createElement('span');
+      num.className = 'fragrance-num';
+      num.textContent = String(idx + 1).padStart(2, '0');
+
+      const name = document.createElement('span');
+      name.className = 'fragrance-name';
+      // Strip brand prefix if repeated
+      let displayName = item;
+      if (item.toLowerCase().startsWith(brand.toLowerCase().split(' ')[0].toLowerCase())) {
+        displayName = item;
+      }
+      name.textContent = displayName;
+
+      const type = document.createElement('span');
+      type.className = 'fragrance-type';
+      type.textContent = extractType(item);
+
+      li.appendChild(num);
+      li.appendChild(name);
+      if (extractType(item)) li.appendChild(type);
+      list.appendChild(li);
+    });
+
+    card.appendChild(list);
+    grid.appendChild(card);
+  });
+
+  if (!hasResults) {
+    const empty = document.createElement('div');
+    empty.className = 'no-results';
+    empty.style.display = 'block';
+    empty.innerHTML = '<p>No fragrances found.</p>';
+    grid.appendChild(empty);
+  }
+
+  countEl.textContent = totalFragrances;
+  brandCountEl.textContent = totalBrands;
+}
+
+searchInput.addEventListener('input', () => render(searchInput.value));
+render('');
+</script>
+</body>
+</html>
